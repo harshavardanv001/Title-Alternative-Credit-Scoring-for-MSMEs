@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MSME Forensic Pipeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 p-10">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-lg">
+        <h2 class="text-2xl font-bold mb-6">Upload Bank Statement</h2>
+        <input type="file" id="fileInput" class="block w-full text-sm text-slate-500 mb-4 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+        <button onclick="processPDF()" id="btn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition">Analyze Statement</button>
+        
+        <div id="reportArea" class="hidden mt-8 border-t pt-8">
+            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Forensic Result</h3>
+            <iframe id="reportFrame" class="w-full h-[600px] border-0 rounded-2xl shadow-inner bg-slate-50"></iframe>
+        </div>
+    </div>
+
+    <script>
+    async function processPDF() {
+        const btn = document.getElementById('btn');
+        const fileInput = document.getElementById('fileInput');
+        if(!fileInput.files[0]) return alert("Select a file");
+
+        btn.innerText = "Analyzing...";
+        const formData = new FormData();
+        formData.append('statement', fileInput.files[0]);
+
+        try {
+            const response = await fetch('http://localhost:5000/upload', { method: 'POST', body: formData });
+            const data = await response.json();
+            
+            if(data.report_html) {
+                document.getElementById('reportArea').classList.remove('hidden');
+                const frame = document.getElementById('reportFrame');
+                const doc = frame.contentWindow.document;
+                doc.open();
+                doc.write(data.report_html);
+                doc.close();
+                btn.innerText = "Analyze Statement";
+            }
+        } catch (e) {
+            alert("Connection error");
+            btn.innerText = "Analyze Statement";
+        }
+    }
+    </script>
+</body>
+</html>

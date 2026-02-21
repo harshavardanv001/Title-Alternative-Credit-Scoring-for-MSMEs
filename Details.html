@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Business Loan Application</title>
+    <style>
+        :root {
+            --primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+            --secondary: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+            --success: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            --bg: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+            --dark-blue: #1e293b;
+            --glass: rgba(255, 255, 255, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 25px 50px rgba(30, 58, 138, 0.12);
+            --shadow-hover: 0 35px 70px rgba(30, 58, 138, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(20, 184, 166, 0.12) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        form {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 48px 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 24px 24px 0 0;
+            z-index: 1;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        h2 {
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin: -20px 0 20px 0;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        p {
+            text-align: center;
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 0.98rem;
+            color: var(--dark-blue);
+            letter-spacing: 0.2px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 16px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-1px);
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        button {
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow);
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0d9488, #14b8a6);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            form { 
+                padding: 40px 32px; 
+                margin: 0 10px;
+                border-radius: 20px;
+            }
+            h2 { font-size: 1.7rem; }
+            input, button { padding: 15px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <form id="Details" onsubmit="return handleFormSubmit(event)">
+        <h2>Business Loan Application</h2>
+        <p>Please verify your details before proceeding.</p>
+        
+        <div class="input-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="FN" required placeholder="John">
+        </div>
+
+        <div class="input-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="LN" required placeholder="Doe">
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="9876543210" required title="Please enter 10 digits">
+        </div>
+
+        <div class="input-group">
+            <label for="aadhaar">Aadhaar Number</label>
+            <input type="text" id="aadhaar" name="aadhaar" pattern="[0-9]{12}" placeholder="12-digit number" required title="Please enter 12 digits">
+        </div>
+
+        <div class="input-group">
+            <label for="udyam_id">Udyam Registration ID</label>
+            <input type="text" id="udyam_id" name="udyam_id" placeholder="UDYAM-XX-00-0000000" required>
+        </div>
+
+        <button type="submit">Verify & Submit Application</button>
+    </form>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            var form = document.getElementById("Details");
+            var inputs = form.querySelectorAll("input");
+            var isValid = true;
+
+            inputs.forEach(function(input) {
+                if (input.value.trim() === "") {
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                window.location.href = "BankDetail.html";
+            } else {
+                alert("Please fill out all fields correctly.");
+            }
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

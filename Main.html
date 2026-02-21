@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Business Funding | Growth Dashboard</title>
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #1E293B;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* The Main Layout Grid */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 450px 400px; /* Slightly wider for better text flow */
+            grid-template-rows: auto auto;
+            gap: 24px;
+            max-width: 900px;
+        }
+
+        /* Main Branding Box */
+        .bento-main {
+            grid-row: span 4;
+            background-color: #FFFFFF;
+            padding: 50px; /* Increased padding for a spacious feel */
+            border-radius: 32px;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            height: 500px;
+        }
+
+        .logo { 
+            color: #3B82F6; 
+            font-weight: 800; 
+            font-size: 24px; /* Bigger logo */
+            letter-spacing: -0.5px;
+            margin-bottom: 30px;
+        }
+        
+        h1 { 
+            font-size: 42px; /* Large, bold heading */
+            line-height: 1.1; 
+            margin: 0 0 20px 0; 
+            color: #0F172A; 
+            font-weight: 800;
+        }
+
+        .main-desc {
+            font-size: 18px; /* Bigger description */
+            color: #64748B;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        /* The Steps (Bento Items) */
+        .bento-item {
+            background: #FFFFFF;
+            padding: 30px;
+            border-radius: 28px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bento-item:hover {
+            border-color: #3B82F6;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1);
+        }
+
+        .step-num {
+            background: #EFF6FF;
+            color: #3B82F6;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        h3 { 
+            margin: 0 0 10px 0; 
+            font-size: 22px; /* Bigger step titles */
+            color: #1E293B;
+        }
+
+        p { 
+            margin: 0; 
+            font-size: 16px; /* Bigger body text */
+            color: #64748B; 
+            line-height: 1.5; 
+        }
+
+        /* Button Area */
+        button {
+            width: 100%;
+            background-color: #3B82F6;
+            color: white;
+            padding: 20px; /* Thicker button */
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button:hover { 
+            background-color: #2563EB; 
+        }
+
+        a { text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="bento-main">
+            <div>
+                <div class="logo">● MOMENTUM</div>
+                <h1>Your Cash Flow is Your New Collateral.</h1>
+                <p class="main-desc">Unlock credit based on your business velocity, not just a credit score.</p>
+            </div>
+            
+            <a href="Details.html">
+                <button>Get Started Now ➔</button>
+            </a>
+        </div>
+
+        <div class="bento-item">
+            <div class="step-num">1</div>
+            <h3>Link Data</h3>
+            <p>Connect UPI or bank feeds via bank-grade secure snapshots.</p>
+        </div>
+
+        <div class="bento-item">
+            <div class="step-num">2</div>
+            <h3>Reputation Engine</h3>
+            <p>Our engine verifies real-world health and growth trends instantly.</p>
+        </div>
+
+        <div class="bento-item" style="grid-column: 2;">
+            <div class="step-num">3</div>
+            <h3>Determining your score</h3>
+            <p>Receive a personalized limit that scales as your revenue grows.</p>
+        </div>
+    </div>
+
+</body>
+</html>
